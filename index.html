@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2026 會長成長營 線上報名</title>
+<meta name="description" content="115 年 12 月 12 日（六）於桃園市青年事務局。從培養 AI 時代下的思考力，到化解衝突的親師共好策略。手機一分鐘完成報名。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="2026 會長成長營 線上報名">
+<meta property="og:description" content="115 年 12 月 12 日（六）於桃園市青年事務局。手機一分鐘完成報名。">
+<meta property="og:url" content="https://athenaleetw.github.io/camp2026/">
+<meta property="og:image" content="https://athenaleetw.github.io/camp2026/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="theme-color" content="#2B247C">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#231D63; --indigo:#2B247C; --violet:#3D32B0; --azure:#2B6FE0; --cyan:#2BC9E5;
+  --mint:#6FDDB0; --gold:#F7B733; --gold-deep:#E79A12;
+  --paper:#F3F4FB; --white:#fff; --text:#26234A; --muted:#5D5A7E; --line:#D9DAEC; --err:#C4262E; --ok:#0B7A57;
+  --font:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--text);font:400 18px/1.7 var(--font)}
+img{display:block;max-width:100%}
+a{color:var(--violet)}
+h1,h2,h3,p{margin:0}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold-deep);outline-offset:2px}
+[hidden]{display:none!important}
+.wrap{width:min(1080px,100%);margin:0 auto;padding:0 20px}
+
+.demo{background:var(--gold);color:var(--ink);font-size:15px;font-weight:700;text-align:center;padding:6px 16px}
+
+/* 首屏：沿用簡報主視覺 */
+.hero{position:relative;color:#fff;background:var(--indigo) url(hero.jpg) center/cover no-repeat;overflow:hidden}
+.hero .wrap{width:min(1260px,100%)}
+.hero-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:32px;align-items:center;min-height:680px;padding-top:36px;padding-bottom:40px}
+.who{display:flex;flex-direction:column;gap:2px}
+.who figure{margin:0;display:flex;align-items:center;gap:16px}
+.who figure:nth-child(2){margin-left:clamp(32px,6vw,84px)}
+.ring{flex:none;width:clamp(136px,16vw,200px);height:clamp(136px,16vw,200px);border-radius:50%;border:7px solid #fff;object-fit:cover;background:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.3),0 0 0 12px rgba(255,255,255,.08)}
+.who figcaption{font-size:16px;line-height:1.45;text-shadow:0 1px 6px rgba(35,29,99,.6)}
+.who b{display:block;font-size:24px;font-weight:700}
+.head{text-align:center}
+.org{display:flex;align-items:center;justify-content:center;gap:12px;font-size:clamp(18px,2.4vw,26px);font-weight:700;letter-spacing:.06em}
+.org img{width:64px;height:64px;border-radius:50%;background:#fff}
+h1{font-size:min(6vw,78px);font-weight:900;line-height:1.08;margin:12px 0 10px;white-space:nowrap}
+h1 span{letter-spacing:-.01em}
+.sub{font-size:clamp(16px,1.9vw,20px);font-weight:500;letter-spacing:.14em;line-height:1.6}
+.sub i{font-style:normal;display:inline-block}
+.when{margin-top:26px;font-size:clamp(20px,2.5vw,26px);font-weight:700;line-height:1.5}
+.when small{display:block;font-size:17px;font-weight:500}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:10px 32px;border-radius:999px;border:0;background:var(--gold);color:var(--ink);font-size:20px;font-weight:900;text-decoration:none;cursor:pointer;transition:background .15s}
+.btn:hover{background:#FFC64D}
+.btn[disabled]{background:#C9C9DA;color:#55536F;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--indigo);box-shadow:inset 0 0 0 2px var(--indigo)}
+.btn.ghost:hover{background:rgba(61,50,176,.08)}
+.cta{margin-top:22px}
+.cta .btn{min-width:260px;font-size:22px;min-height:64px}
+
+/* 內容區 */
+section.block{padding:56px 0}
+section.block h2{font-size:clamp(26px,3.4vw,34px);font-weight:900;color:var(--indigo);line-height:1.3;margin-bottom:24px}
+.facts{background:#fff}
+.facts dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 40px;margin:0}
+.facts dt{font-size:15px;color:var(--muted)}
+.facts dd{margin:0;font-weight:700;line-height:1.5}
+.facts dd small{display:block;font-weight:400;font-size:16px;color:var(--muted)}
+
+.talks{display:grid;gap:36px}
+.talk{display:grid;grid-template-columns:176px minmax(0,1fr);gap:32px;align-items:start}
+.talk img{width:176px;height:176px;border-radius:50%;object-fit:cover;border:5px solid #fff;box-shadow:0 0 0 2px var(--cyan)}
+.talk h3{font-size:22px;font-weight:700;color:var(--indigo);line-height:1.45}
+.talk .by{font-weight:700;margin-top:2px}
+.talk .by span{display:block;font-weight:400;color:var(--muted);font-size:16px}
+.talk ul{margin:8px 0 0;padding-left:1.2em;color:var(--text)}
+.talk li{margin-top:2px;max-width:40em}
+
+.agenda{background:var(--indigo) url(hero.jpg) center/cover;color:#fff}
+section.agenda h2{color:#fff}
+.tl{list-style:none;margin:0;padding:0;background:rgba(35,29,99,.62);border-radius:20px;padding:12px 24px}
+.tl li{display:grid;grid-template-columns:128px minmax(0,1fr);gap:16px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.22)}
+.tl li:last-child{border:0}
+.tl time{font-weight:700;font-variant-numeric:tabular-nums;color:var(--mint)}
+.tl small{display:block;font-size:15px;opacity:.86}
+.tl .quiet{opacity:.78}
+
+.place p+p{margin-top:6px}
+.foot{background:var(--ink);color:#fff;padding:36px 0 110px;font-size:16px}
+.foot a{color:var(--mint)}
+.foot dl{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:2px 14px;margin:0 0 16px}
+.foot dt{opacity:.75}.foot dd{margin:0}
+
+.stick{position:fixed;left:0;right:0;bottom:0;z-index:5;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(35,29,99,.96);display:none}
+.stick .btn{width:100%}
+
+/* 報名畫面 */
+.app-top{background:linear-gradient(rgba(35,29,99,.62),rgba(35,29,99,.62)),var(--indigo) url(hero.jpg) center/cover;color:#fff;padding:14px 0 16px}
+.app-top .wrap{max-width:720px}
+.app-bar{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px}
+.app-bar img{width:36px;height:36px;border-radius:50%;background:#fff}
+.app-bar a{margin-left:auto;color:#fff;font-weight:500;font-size:16px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:12px 0 0;padding:0;list-style:none;font-size:15px}
+.steps li{padding-top:7px;border-top:5px solid rgba(255,255,255,.3);opacity:.75}
+.steps li.on{border-color:var(--gold);opacity:1;font-weight:700}
+.steps li.done{border-color:var(--mint);opacity:1}
+.panel{max-width:720px;margin:0 auto;padding:26px 20px 130px}
+.panel h2{font-size:26px;font-weight:900;color:var(--indigo);line-height:1.35}
+[tabindex="-1"]:focus{outline:none}
+.lead{color:var(--muted);margin-top:4px}
+
+/* 選校 */
+.search{width:100%;min-height:56px;margin-top:16px;padding:10px 16px;border:2px solid var(--line);border-radius:14px;background:#fff}
+.search:focus{border-color:var(--violet);outline:none}
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px;margin-top:12px}
+.chips[hidden]{display:none}
+.chip{min-height:46px;padding:4px 2px;border-radius:999px;border:2px solid var(--line);background:#fff;font-size:17px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--violet);border-color:var(--violet);color:#fff;font-weight:700}
+.lvl{font-size:16px;font-weight:700;color:var(--muted);margin:16px 0 6px}
+.slist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.sbtn{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:56px;padding:6px 14px;border:2px solid var(--line);border-radius:12px;background:#fff;text-align:left;cursor:pointer;line-height:1.3}
+.sbtn:hover{border-color:var(--violet)}
+.none{margin-top:14px;color:var(--muted)}
+.linkbtn{background:none;border:0;padding:6px 0;color:var(--violet);text-decoration:underline;cursor:pointer;min-height:44px}
+
+/* 已選學校 */
+.picked{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding:12px 16px;background:#fff;border-radius:14px}
+.picked b{display:block;font-size:20px;color:var(--indigo);line-height:1.3}
+.picked span{font-size:16px;color:var(--muted)}
+
+/* 表單 */
+.person{margin-top:20px;background:#fff;border-radius:16px;padding:18px}
+.f{margin-top:14px;border:0;padding:0;min-width:0}
+.f>label,.f>legend{display:block;font-weight:700;padding:0;margin-bottom:4px}
+.f small.opt{font-weight:400;color:var(--muted);font-size:15px;margin-left:4px}
+.in{width:100%;min-height:52px;padding:10px 14px;border:2px solid var(--line);border-radius:12px;background:#fff}
+textarea.in{min-height:96px;resize:vertical;line-height:1.6}
+.in:focus{border-color:var(--violet);outline:none}
+.bad .in{border-color:var(--err)}
+.err{display:block;color:var(--err);font-size:16px;font-weight:500;margin-top:4px}
+.seg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.seg input{position:absolute;opacity:0;width:1px;height:1px}
+.seg span{display:flex;align-items:center;justify-content:center;text-align:center;min-height:52px;padding:6px 4px;border:2px solid var(--line);border-radius:12px;background:#fff;line-height:1.25;cursor:pointer;font-size:16px}
+.seg input:checked+span{background:var(--violet);border-color:var(--violet);color:#fff;font-weight:700}
+.seg input:focus-visible+span{outline:3px solid var(--gold-deep);outline-offset:2px}
+.hint{margin-top:4px;font-size:16px;color:var(--muted)}
+.q{margin-top:16px;background:#fff;border-radius:16px;padding:16px 18px;display:grid;grid-template-columns:64px minmax(0,1fr);gap:4px 14px}
+.q img{width:64px;height:64px;border-radius:50%;object-fit:cover}
+.q label{font-weight:700;align-self:center;line-height:1.4}
+.q label small{display:block;font-weight:400;font-size:15px;color:var(--muted)}
+.q textarea{grid-column:1/-1;margin-top:8px}
+.review{margin-top:16px;background:#fff;border-radius:16px;padding:6px 18px}
+.review>div{padding:12px 0;border-bottom:1px solid var(--line)}
+.review>div:last-child{border:0}
+.review h3{font-size:16px;font-weight:500;color:var(--muted);display:flex;justify-content:space-between}
+.review button{background:none;border:0;color:var(--violet);text-decoration:underline;cursor:pointer;padding:0 0 0 12px;font-size:16px}
+.review p{font-weight:700;overflow-wrap:anywhere}
+.review p small{display:block;font-weight:400;font-size:16px;color:var(--muted)}
+.consent{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;margin-top:18px;align-items:start;cursor:pointer}
+.consent input{width:26px;height:26px;margin:3px 0 0;accent-color:var(--violet)}
+details.pdpa{margin-top:8px;font-size:16px;color:var(--muted)}
+details.pdpa summary{cursor:pointer;color:var(--violet);padding:6px 0}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.banner{margin-top:16px;padding:12px 16px;border-radius:12px;background:#FDECEC;color:var(--err);font-weight:500}
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:5;background:#fff;box-shadow:0 -1px 0 var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom))}
+.nav div{display:flex;gap:10px;max-width:680px;margin:0 auto}
+.nav .btn{flex:1;padding:8px 16px}
+.nav .btn.ghost{flex:0 0 112px}
+
+/* 完成 */
+.done-top{background:var(--indigo) url(hero.jpg) center/cover;color:#fff;text-align:center;padding:44px 20px 40px}
+.done-top h2{font-size:34px;font-weight:900;line-height:1.3}
+.code{display:inline-block;margin-top:14px;padding:8px 28px;border-radius:14px;background:#fff;color:var(--ink);font-size:18px;line-height:1.3}
+.code b{display:block;font-size:40px;font-weight:900;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.done-body{max-width:640px;margin:0 auto;padding:26px 20px 56px}
+.done-body h3{font-size:20px;color:var(--indigo);font-weight:900;margin-top:22px}
+.acts{display:grid;gap:10px;margin-top:12px}
+.acts .btn{font-size:18px}
+.acts .line{background:#06C755;color:#fff}
+.acts .line:hover{background:#05B14C}
+
+@media (max-width:820px){
+  body{font-size:18px}
+  .hero-in{grid-template-columns:minmax(0,1fr);min-height:0;padding-top:24px;padding-bottom:32px;gap:24px}
+  .head{order:-1}
+  .who{flex-direction:row;justify-content:center;gap:12px}
+  .who figure,.who figure:nth-child(2){flex:1 1 0;min-width:0;flex-direction:column;margin:0;text-align:center;gap:8px}
+  .who{margin:0 -8px}
+  .ring{width:min(28.5vw,150px);height:min(28.5vw,150px);border-width:4px;box-shadow:0 0 0 1px rgba(255,255,255,.3),0 0 0 6px rgba(255,255,255,.08)}
+  .who figcaption{font-size:13px}.who b{font-size:15px}
+  h1{font-size:min(12vw,80px)}
+  .org img{width:48px;height:48px}
+  .sub{letter-spacing:.08em}
+  .cta{display:none}
+  .stick{display:block}
+  .facts dl{grid-template-columns:minmax(0,1fr)}
+  section.block{padding:40px 0}
+  .talk{grid-template-columns:112px minmax(0,1fr);gap:16px}
+  .talk img{width:112px;height:112px;border-width:3px}
+  .talk ul{grid-column:1/-1}
+  .tl{padding:6px 16px}
+  .tl li{grid-template-columns:minmax(0,1fr);gap:0}
+}
+@media (max-width:380px){.slist{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+</head>
+<body>
+<div class="demo" id="demo" hidden>預覽模式：資料不會真的送出</div>
+
+<!-- 活動首頁 -->
+<main id="home" hidden>
+  <header class="hero">
+    <div class="wrap hero-in">
+      <div class="who">
+        <figure><img class="ring" src="p-yu.jpg" alt="余承學總監"><figcaption>均一教育平台 課程影響力總監<b>余承學 總監</b></figcaption></figure>
+        <figure><img class="ring" src="p-liu.jpg" alt="劉仲成局長"><figcaption>桃園市政府教育局<b>劉仲成 局長</b></figcaption></figure>
+        <figure><img class="ring" src="p-lo.jpg" alt="羅丰苓輔導老師"><figcaption>親師溝通與校園衝突處置專家<b>羅丰苓 輔導老師</b></figcaption></figure>
+      </div>
+      <div class="head">
+        <p class="org"><img src="logo.png" alt="">桃園市中壢家長會長協會</p>
+        <h1><span>2026</span>會長成長營</h1>
+        <p class="sub"><i>從培養 AI 時代下的思考力</i> <i>到化解衝突的親師共好策略</i></p>
+        <p class="when">115 年 12 月 12 日（六）<small>桃園市政府青年事務局 多功能展演廳</small></p>
+        <p class="cta"><a class="btn" href="#apply/1" data-cta>立即報名</a></p>
+      </div>
+    </div>
+  </header>
+
+  <section class="facts block"><div class="wrap"><dl>
+    <div><dt>報名截止</dt><dd data-deadline>12 月 9 日（三）23:59</dd></div>
+    <div><dt>參加對象</dt><dd>桃園市各級學校家長會長及主要幹部<small>預計 120 人</small></dd></div>
+    <div><dt>報到時間</dt><dd>09:00 開始報到<small>09:30 開幕，16:30 賦歸，供午餐</small></dd></div>
+  </dl></div></section>
+
+  <section class="block"><div class="wrap">
+    <h2>三場專題</h2>
+    <div class="talks">
+      <article class="talk"><img src="p-liu.jpg" alt=""><div>
+        <h3>教育趨勢議題</h3>
+        <p class="by">劉仲成 局長<span>桃園市政府教育局</span></p>
+      </div></article>
+      <article class="talk"><img src="p-yu.jpg" alt=""><div>
+        <h3>別讓 AI 代替孩子思考：家長可以做的三件事</h3>
+        <p class="by">余承學 總監<span>均一教育平台 課程影響力總監</span></p>
+        <ul><li>解析何謂「大腦外包」，剖析生成式 AI 對孩子自主思考力的影響與衝擊</li><li>建立家長實用的三大陪伴習慣：陪孩子問、約定怎麼用、看見孩子有沒有在想</li><li>以「好的 AI 學習工具怎麼設計」作為實務案例，引導家長如何落實正向輔助教學</li></ul>
+      </div></article>
+      <article class="talk"><img src="p-lo.jpg" alt=""><div>
+        <h3>從「替孩子討公道」到「與老師一起找解方」：化解校園衝突的親師共好策略</h3>
+        <p class="by">羅丰苓 輔導老師<span>親師溝通與校園衝突處置專家</span></p>
+        <ul><li>解析當前校園常見親師衝突類型與心態盲點</li><li>示範「訴求情緒降溫」與「建設性溝通」的實務對話技巧</li></ul>
+      </div></article>
+    </div>
+  </div></section>
+
+  <section class="agenda block"><div class="wrap">
+    <h2>當日流程</h2>
+    <ol class="tl">
+      <li class="quiet"><time>09:00–09:30</time><div>學員報到</div></li>
+      <li><time>09:30–10:00</time><div>開幕式</div></li>
+      <li><time>10:00–11:00</time><div>教育趨勢議題<small>劉仲成 局長</small></div></li>
+      <li class="quiet"><time>11:00–11:20</time><div>中場休息</div></li>
+      <li><time>11:20–12:20</time><div>別讓 AI 代替孩子思考：家長可以做的三件事<small>余承學 總監</small></div></li>
+      <li class="quiet"><time>12:20–13:30</time><div>午餐與休憩<small>移至 2F PBL 教室</small></div></li>
+      <li><time>13:30–15:30</time><div>化解校園衝突的親師共好策略<small>羅丰苓 輔導老師</small></div></li>
+      <li><time>15:30–16:00</time><div>歡欣茶敘與分組交流<small>依國小、國中、高中職分組，2F PBL 教室</small></div></li>
+      <li><time>16:00–16:30</time><div>心得分享暨結業式</div></li>
+    </ol>
+  </div></section>
+
+  <section class="block place"><div class="wrap">
+    <h2>活動地點</h2>
+    <p><b>桃園市政府青年事務局 多功能展演廳</b></p>
+    <p>桃園市中壢區環北路 390 號</p>
+    <p><a href="https://www.google.com/maps/search/?api=1&query=%E6%A1%83%E5%9C%92%E5%B8%82%E4%B8%AD%E5%A3%A2%E5%8D%80%E7%92%B0%E5%8C%97%E8%B7%AF390%E8%99%9F" target="_blank" rel="noopener">開啟地圖導航</a></p>
+  </div></section>
+
+  <footer class="foot"><div class="wrap">
+    <dl>
+      <dt>指導單位</dt><dd>桃園市政府、桃園市議會、桃園市政府教育局</dd>
+      <dt>主辦單位</dt><dd>桃園市中壢家長會長協會</dd>
+      <dt>協辦單位</dt><dd>桃園市青年事務局、桃園市平鎮家長會長協會</dd>
+    </dl>
+    <p><a href="#lookup">查詢我的報名</a></p>
+    <p>報名問題請寫信到 <a href="mailto:athenalee.tw@gmail.com">athenalee.tw@gmail.com</a>，或在協會群組詢問。</p>
+  </div></footer>
+  <div class="stick"><a class="btn" href="#apply/1" data-cta>立即報名</a></div>
+</main>
+
+<!-- 報名流程 -->
+<div id="app" hidden>
+  <div class="app-top"><div class="wrap">
+    <div class="app-bar"><img src="logo.png" alt=""><span>2026 會長成長營 報名</span><a href="#">活動資訊</a></div>
+    <ol class="steps" id="steps"></ol>
+  </div></div>
+  <form id="form" class="panel" novalidate autocomplete="on"></form>
+  <div class="nav" id="nav"><div>
+    <button type="button" class="btn ghost" id="back">上一步</button>
+    <button type="button" class="btn" id="next">下一步</button>
+  </div></div>
+</div>
+
+<!-- 完成 -->
+<div id="done" hidden></div>
+
+<!-- 查詢 -->
+<div id="lookup" hidden>
+  <div class="app-top"><div class="wrap"><div class="app-bar"><img src="logo.png" alt=""><span>查詢我的報名</span><a href="#">活動資訊</a></div></div></div>
+  <form class="panel" id="lk" novalidate>
+    <h2 tabindex="-1">查詢我的報名</h2>
+    <p class="lead">輸入報名時填的手機和姓名。</p>
+    <div class="f"><label for="lk-p">手機</label><input class="in" id="lk-p" inputmode="tel" autocomplete="tel"></div>
+    <div class="f"><label for="lk-n">姓名</label><input class="in" id="lk-n" autocomplete="name"></div>
+    <p style="margin-top:18px"><button class="btn" id="lk-b" style="width:100%">查詢</button></p>
+    <div id="lk-r" aria-live="polite"></div>
+  </form>
+</div>
+
+<script src="schools.js"></script>
+<script>
+(function () {
+/* ════ 部署後要填的只有 API 這一行 ════ */
+var API  = 'https://script.google.com/macros/s/AKfycbxJyr7TjjNJMzIAhyIgviiQ4xK9StbbYlqJzXoUGvVkTfrTNnjg_yjFeNgzKZ4okDv0/exec';   // Apps Script 網頁應用程式網址（…/exec）。留空＝預覽模式，不會送出資料
+var SITE = 'https://athenaleetw.github.io/camp2026/';   // 本站正式網址，LINE 分享用
+/* ════════════════════════════ */
+
+var CONTACT = 'athenalee.tw@gmail.com';
+var ROLES = ['現任會長', '榮譽會長', '家長會幹部或成員', '其他'];
+var DIETS = ['葷食', '葷食不吃牛', '素食', '其他'];
+var LEVELS = ['國小', '國中', '高中職'];
+var STEP_NAMES = ['選學校', '填資料', '想問講師', '確認送出'];
+var TOPICS = [
+  { k: 'edu', img: 'p-liu.jpg', t: '教育趨勢', who: '劉仲成 局長' },
+  { k: 'ai',  img: 'p-yu.jpg',  t: 'AI 學習陪伴', who: '余承學 總監' },
+  { k: 'ptc', img: 'p-lo.jpg',  t: '親師衝突處理', who: '羅丰苓 輔導老師' }
+];
+
+var status = { closed: false };
+var S, result = null, sending = false;
+var district = '中壢區', keyword = '', manual = false;
+
+function fresh() {
+  return { school: null, person: blank(), q: { edu: '', ai: '', ptc: '' }, consent: false, hp: '' };
+}
+function blank() {
+  return { name: '', phone: '', role: '', roleNote: '', diet: '', dietNote: '', line: '', email: '' };
+}
+S = fresh();
+
+function $(id) { return document.getElementById(id); }
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+function key(s) { return String(s || '').replace(/\s/g, ''); }
+function phoneOk(v) {
+  var d = String(v || '').replace(/\D/g, '');
+  if (d.indexOf('886') === 0) d = '0' + d.slice(3);
+  return /^0\d{8,9}$/.test(d);
+}
+
+/* ── 後端 ── */
+var mockSeq = 0, mockPeople = [];
+
+function api(body) {
+  if (!API) return new Promise(function (ok) {
+    setTimeout(function () {
+      if (!body) return ok({ ok: true, closed: false, deadlineText: '12 月 9 日（三）23:59' });
+      if (body.action === 'lookup') return ok({ ok: true, found: mockPeople.filter(function (p) { return key(p.name) === key(body.name); }) });
+      mockSeq++;
+      var code = 'A' + ('000' + mockSeq).slice(-3);
+      mockPeople.push({ code: code, school: body.school, name: body.person.name, diet: body.person.diet });
+      ok({ ok: true, code: code, name: body.person.name });
+    }, 500);
+  });
+  var opt = { credentials: 'omit' };
+  if (body) {
+    opt.method = 'POST';
+    opt.headers = { 'Content-Type': 'text/plain;charset=utf-8' };   // 不觸發 CORS 預檢，Apps Script 不支援 OPTIONS
+    opt.body = JSON.stringify(body);
+  }
+  return fetch(API, opt).then(function (r) {
+    if (!r.ok) throw new Error(r.status);
+    return r.json();
+  });
+}
+
+function loadStatus() {
+  return api().then(function (s) {
+    status = s;
+    paintStatus();
+  }).catch(function () {});   // 讀不到狀態不擋報名，送出時後端仍會檢查截止
+}
+
+function paintStatus() {
+  Array.prototype.forEach.call(document.querySelectorAll('[data-cta]'), function (a) {
+    a.textContent = status.closed ? '報名已截止' : '立即報名';
+    a.setAttribute('aria-disabled', status.closed ? 'true' : 'false');
+    a.style.background = status.closed ? '#C9C9DA' : '';
+  });
+  if (status.deadlineText) document.querySelector('[data-deadline]').textContent = status.deadlineText;
+}
+
+/* ── 路由：手機返回鍵可回上一步 ── */
+function route() {
+  var h = location.hash.replace(/^#/, '');
+  var m = h.match(/^apply\/([1-4])$/);
+  if (m) return { name: 'apply', step: Number(m[1]) };
+  if (h === 'done') return { name: 'done' };
+  if (h === 'lookup') return { name: 'lookup' };
+  return { name: 'home' };
+}
+function show(id) {
+  ['home', 'app', 'done', 'lookup'].forEach(function (x) { $(x).hidden = x !== id; });
+  window.scrollTo(0, 0);
+}
+function go() {
+  var r = route();
+  if (r.name === 'done' && !result) { location.replace('#'); return; }
+  if (r.name === 'apply') {
+    if (status.closed) { location.replace('#'); return; }
+    if (result) { result = null; S = fresh(); manual = false; }
+    if (r.step > 1 && !S.school) { location.replace('#apply/1'); return; }
+    show('app'); renderStep(r.step); return;
+  }
+  if (r.name === 'done') { show('done'); renderDone(); return; }
+  if (r.name === 'lookup') { show('lookup'); return; }
+  show('home');
+}
+window.addEventListener('hashchange', go);
+
+/* ── 步驟畫面 ── */
+function renderStep(n, keep) {
+  $('steps').innerHTML = STEP_NAMES.map(function (t, i) {
+    return '<li class="' + (i + 1 === n ? 'on' : i + 1 < n ? 'done' : '') + '"' + (i + 1 === n ? ' aria-current="step"' : '') + '>' + t + '</li>';
+  }).join('');
+  $('form').innerHTML = [null, viewSchool, viewPerson, viewQuestions, viewReview][n]();
+  $('back').hidden = n === 1;
+  $('nav').hidden = n === 1 && !manual;
+  $('next').disabled = false;
+  $('next').textContent = n === 4 ? '送出報名' : '下一步';
+  if (n === 1) paintSchools();
+  if (n === 4) $('next').disabled = !S.consent;
+  if (!keep) { var h = $('form').querySelector('h2'); if (h) h.focus({ preventScroll: true }); }
+}
+
+function viewSchool() {
+  if (manual) return viewManual();
+  return '<h2 tabindex="-1">您是哪一所學校的家長會？</h2><p class="lead">每人填寫一份，同校夥伴請各自報名。</p>'
+    + '<input class="search" id="kw" type="search" aria-label="搜尋學校" placeholder="打校名搜尋，例如：興國" value="' + esc(keyword) + '" autocomplete="off">'
+    + '<div class="chips" id="chips" role="group" aria-label="行政區"></div><div id="slist"></div>'
+    + '<p><button type="button" class="linkbtn" id="toManual">清單上沒有我的學校或單位</button></p>';
+}
+function paintSchools() {
+  if (manual) return;
+  var box = $('slist'); if (!box) return;
+  var chips = $('chips');
+  chips.hidden = !!keyword;
+  chips.innerHTML = Object.keys(window.SCHOOLS).map(function (d) {
+    return '<button type="button" class="chip" data-d="' + d + '" aria-pressed="' + (d === district) + '">' + d + '</button>';
+  }).join('');
+  var html = '', hits = 0;
+  var kw = key(keyword).replace(/台/g, '臺');
+  function row(name, lvl, d) {
+    return '<button type="button" class="sbtn" data-s="' + esc(name) + '" data-l="' + lvl + '" data-d="' + d + '">' + esc(name) + '</button>';
+  }
+  if (kw) {
+    var seen = {}, rows = '';
+    Object.keys(window.SCHOOLS).forEach(function (d) {
+      LEVELS.forEach(function (lv) {
+        window.SCHOOLS[d][lv].forEach(function (n) {
+          if (n.replace(/台/g, '臺').indexOf(kw) >= 0 && !seen[n]) { seen[n] = 1; hits++; rows += row(n, lv, d); }
+        });
+      });
+    });
+    html = hits ? '<p class="lvl">找到 ' + hits + ' 所</p><div class="slist">' + rows + '</div>'
+      : '<p class="none">找不到「' + esc(keyword) + '」。請換個關鍵字，或按下方連結手動填寫。</p>';
+  } else {
+    LEVELS.forEach(function (lv) {
+      var list = window.SCHOOLS[district][lv];
+      if (list.length) html += '<p class="lvl">' + lv + '</p><div class="slist">' + list.map(function (n) { return row(n, lv, district); }).join('') + '</div>';
+    });
+  }
+  box.innerHTML = html;
+}
+function viewManual() {
+  var sc = S.school && S.school.manual ? S.school : { name: '', level: '' };
+  return '<h2 tabindex="-1">請填寫學校或單位</h2><p class="lead">清單沒有列到的學校、幼兒園或外縣市單位，請在這裡填寫。</p>'
+    + '<div class="f" id="f-mname"><label for="mname">學校或單位全名</label><input class="in" id="mname" value="' + esc(sc.name) + '"></div>'
+    + '<fieldset class="f" id="f-mlvl"><legend>類別</legend><div class="seg">'
+    + LEVELS.concat('其他').map(function (l) { return '<label><input type="radio" name="mlvl" value="' + l + '"' + (sc.level === l ? ' checked' : '') + '><span>' + l + '</span></label>'; }).join('')
+    + '</div></fieldset><p><button type="button" class="linkbtn" id="toList">回學校清單</button></p>';
+}
+
+function viewPerson() {
+  var p = S.person;
+  return '<h2 tabindex="-1">填寫您的資料</h2>'
+    + '<div class="picked"><b>' + esc(S.school.name) + '</b><button type="button" class="linkbtn" data-goto="1" style="flex:none">換學校</button></div>'
+    + '<input class="hp" tabindex="-1" aria-hidden="true" autocomplete="off" name="zq_hp" id="zq_hp" value="' + esc(S.hp) + '">'
+    + '<div class="person">'
+    + inp('name', '姓名', 'autocomplete="name"', p.name)
+    + inp('phone', '手機', 'inputmode="tel" autocomplete="tel" placeholder="0912-345-678"', p.phone)
+    + inp('email', 'Email', 'type="email" inputmode="email" autocomplete="email" autocapitalize="off" aria-describedby="email-hint"', p.email)
+    + '<p class="hint" id="email-hint">報名確認信會寄到這個信箱。</p>'
+    + '<fieldset class="f" id="f-role"><legend>身分</legend>' + seg('role', ROLES, p.role) + '</fieldset>'
+    + (p.role === '其他' ? inp('roleNote', '請說明身分', '', p.roleNote, true) : '')
+    + '<fieldset class="f" id="f-diet"><legend>午餐</legend>' + seg('diet', DIETS, p.diet) + '</fieldset>'
+    + (p.diet === '其他' ? inp('dietNote', '請說明飲食需求', '', p.dietNote) : '')
+    + inp('line', 'LINE ID', 'autocomplete="off" autocapitalize="off"', p.line, true)
+    + '</div>'
+    + '<div id="formErr" aria-live="polite"></div>';
+}
+function seg(field, list, val) {
+  return '<div class="seg">' + list.map(function (v) {
+    return '<label><input type="radio" name="' + field + '" data-f="' + field + '" value="' + v + '"' + (val === v ? ' checked' : '') + '><span>' + v + '</span></label>';
+  }).join('') + '</div>';
+}
+function inp(f, label, attrs, val, opt) {
+  return '<div class="f" id="f-' + f + '"><label for="' + f + '">' + label + (opt ? '<small class="opt">選填</small>' : '') + '</label>'
+    + '<input class="in" id="' + f + '" data-f="' + f + '" ' + attrs + ' value="' + esc(val) + '"></div>';
+}
+
+function viewQuestions() {
+  return '<h2 tabindex="-1">有想問講師的問題嗎？</h2><p class="lead">可以不填。問題會交給講師備課參考，不一定逐題回覆。</p>'
+    + TOPICS.map(function (t) {
+      return '<div class="q"><img src="' + t.img + '" alt=""><label for="q-' + t.k + '">' + t.t + '<small>' + t.who + '</small></label>'
+        + '<textarea class="in" id="q-' + t.k + '" data-q="' + t.k + '" maxlength="500">' + esc(S.q[t.k]) + '</textarea></div>';
+    }).join('');
+}
+
+function viewReview() {
+  var p = S.person;
+  var who = '<p>' + esc(p.name) + '<small>' + esc(p.phone) + '，' + esc(p.email) + '</small><small>' + esc(p.role) + '，午餐' + esc(p.diet) + (p.diet === '其他' && p.dietNote ? '（' + esc(p.dietNote) + '）' : '') + '</small></p>';
+  var qs = TOPICS.filter(function (t) { return S.q[t.k].trim(); }).map(function (t) {
+    return '<p><small>' + t.t + '：' + esc(S.q[t.k]) + '</small></p>';
+  }).join('');
+  return '<h2 tabindex="-1">請確認報名資料</h2>'
+    + '<div class="review"><div><h3>學校<button type="button" data-goto="1">修改</button></h3><p>' + esc(S.school.name) + '</p></div>'
+    + '<div><h3>報名人<button type="button" data-goto="2">修改</button></h3>' + who + '</div>'
+    + '<div><h3>想問講師<button type="button" data-goto="3">修改</button></h3>' + (qs || '<p><small>沒有留下問題</small></p>') + '</div></div>'
+    + '<label class="consent"><input type="checkbox" id="consent"' + (S.consent ? ' checked' : '') + '><span>我同意主辦單位依下方說明使用我的資料。</span></label>'
+    + '<details class="pdpa"><summary>個人資料使用說明</summary><p>桃園市中壢家長會長協會蒐集姓名、手機、Email、學校、身分、餐點需求，以及選填的 LINE ID，僅用於本活動的報到、午餐準備、分組與活動通知，不作其他用途，也不提供給第三人。講師只會收到問題內容，不含姓名。活動核銷完成後刪除線上報名資料。您可寫信到 ' + CONTACT + ' 查詢、更正或請求刪除；未提供必填資料將無法完成報名。</p></details>'
+    + '<div id="formErr" aria-live="polite"></div>';
+}
+
+/* ── 檢查 ── */
+function mark(id, msg) {
+  var el = $(id); if (!el) return;
+  el.classList.add('bad');
+  var e = document.createElement('span'); e.className = 'err'; e.textContent = msg; el.appendChild(e);
+}
+function clearErr() {
+  Array.prototype.forEach.call($('form').querySelectorAll('.err'), function (e) { e.remove(); });
+  Array.prototype.forEach.call($('form').querySelectorAll('.bad'), function (e) { e.classList.remove('bad'); });
+}
+function focusBad() {
+  var el = $('form').querySelector('.bad');
+  if (!el) return;
+  el.scrollIntoView({ block: 'center' });
+  var i = el.querySelector('input'); if (i) i.focus({ preventScroll: true });
+}
+function checkPerson() {
+  clearErr();
+  var p = S.person, ok = true;
+  function bad(f, m) { mark('f-' + f, m); ok = false; }
+  if (!p.name.trim()) bad('name', '請填姓名');
+  if (!phoneOk(p.phone)) bad('phone', p.phone.trim() ? '手機格式不正確，請填 09 開頭 10 碼' : '請填手機');
+  if (!p.role) bad('role', '請選身分');
+  if (!p.diet) bad('diet', '請選午餐');
+  if (p.diet === '其他' && !p.dietNote.trim()) bad('dietNote', '請說明飲食需求');
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(p.email.trim())) bad('email', p.email.trim() ? 'Email 格式不正確' : '請填 Email');
+  if (!ok) focusBad();
+  return ok;
+}
+function saveManual() {
+  clearErr();
+  var name = $('mname').value.trim(), lv = $('form').querySelector('input[name=mlvl]:checked');
+  if (!name) mark('f-mname', '請填學校或單位全名');
+  if (!lv) mark('f-mlvl', '請選類別');
+  if (!name || !lv) { focusBad(); return false; }
+  S.school = { name: name, level: lv.value, district: '其他', manual: true };
+  return true;
+}
+
+/* ── 送出 ── */
+function submit() {
+  if (sending) return;
+  sending = true;
+  var b = $('next'); b.disabled = true; b.textContent = '送出中，請稍候';
+  var box = $('formErr'); box.innerHTML = '';
+  api({
+    school: S.school.name, district: S.school.district, level: S.school.level,
+    person: S.person, questions: S.q, consent: S.consent, zq_hp: S.hp
+  }).then(function (r) {
+    sending = false;
+    if (r.ok) { result = r; result.school = S.school.name; result.email = S.person.email.trim(); location.hash = 'done'; return; }
+    if (r.closed) status.closed = true;
+    b.textContent = '送出報名'; b.disabled = !S.consent;
+    box.innerHTML = '<div class="banner">' + esc(r.msg) + (r.dup ? ' <a href="#lookup">查詢我的報名</a>' : '') + '</div>';
+    box.scrollIntoView({ block: 'center' });
+  }).catch(function () {
+    sending = false;
+    b.textContent = '送出報名'; b.disabled = !S.consent;
+    box.innerHTML = '<div class="banner">網路連線中斷，還不確定是否送達。請再按一次「送出報名」；已送達的話，系統會告知不用重填。</div>';
+    box.scrollIntoView({ block: 'center' });
+  });
+}
+
+function renderDone() {
+  var r = result, url = SITE || location.href.split('#')[0];
+  var text = '2026 會長成長營開放報名了！12/12（六）青年事務局，手機一分鐘填完：' + url;
+  var cal = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent('2026 會長成長營')
+    + '&dates=20261212T010000Z/20261212T083000Z&location=' + encodeURIComponent('桃園市政府青年事務局 多功能展演廳（桃園市中壢區環北路390號）')
+    + '&details=' + encodeURIComponent('09:00 開始報到。報名編號 ' + r.code);
+  var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//ZLPA//Camp2026//ZH', 'BEGIN:VEVENT', 'UID:camp2026-' + r.code + '@zlpa',
+    'DTSTAMP:20261101T000000Z', 'DTSTART:20261212T010000Z', 'DTEND:20261212T083000Z', 'SUMMARY:2026 會長成長營',
+    'LOCATION:桃園市政府青年事務局 多功能展演廳（桃園市中壢區環北路390號）', 'DESCRIPTION:09:00 開始報到。報名編號 ' + r.code, 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+  $('done').innerHTML = '<div class="done-top"><h2 tabindex="-1">報名完成</h2><p>' + esc(r.school) + '：' + esc(r.name) + '</p>'
+    + '<p class="code">報名編號<b>' + esc(r.code) + '</b></p></div>'
+    + '<div class="done-body"><h3>確認信</h3><p>會寄到 ' + esc(r.email) + '。沒收到請先看垃圾郵件匣。</p><h3>活動當天</h3><p>115 年 12 月 12 日（六）09:00 開始報到，09:30 開幕</p><p>桃園市政府青年事務局 多功能展演廳（中壢區環北路 390 號）</p>'
+    + '<div class="acts"><a class="btn ghost" href="' + cal + '" target="_blank" rel="noopener">加到 Google 日曆</a>'
+    + '<a class="btn ghost" href="data:text/calendar;charset=utf-8,' + encodeURIComponent(ics) + '" download="2026會長成長營.ics">加到 iPhone 行事曆</a>'
+    + '<a class="btn line" href="https://line.me/R/share?text=' + encodeURIComponent(text) + '" target="_blank" rel="noopener">用 LINE 分享給同校夥伴</a></div>'
+    + '<p class="lead" style="margin-top:8px">每人填寫一份，同校夥伴請各自報名。</p>'
+    + '<h3>需要更改或取消</h3><p>請寫信到 <a href="mailto:' + CONTACT + '">' + CONTACT + '</a>，或在協會群組告知報名編號。</p>'
+    + '<div class="acts"><a class="btn" href="#">回活動首頁</a></div></div>';
+  var h = $('done').querySelector('h2'); if (h) h.focus({ preventScroll: true });
+}
+
+/* ── 事件 ── */
+$('form').addEventListener('input', function (e) {
+  var t = e.target;
+  if (t.id === 'kw') { keyword = t.value.trim(); paintSchools(); return; }
+  if (t.dataset.f) {
+    S.person[t.dataset.f] = t.value;
+    if (t.type === 'radio' && (t.dataset.f === 'role' || t.dataset.f === 'diet')) {
+      var y = window.scrollY; renderStep(2, true); window.scrollTo(0, y);
+    }
+  }
+  if (t.dataset.q) S.q[t.dataset.q] = t.value;
+  if (t.id === 'zq_hp') S.hp = t.value;
+  if (t.id === 'consent') { S.consent = t.checked; $('next').disabled = !t.checked; }
+});
+$('form').addEventListener('click', function (e) {
+  var t = e.target.closest('button'); if (!t) return;
+  if (t.dataset.d && t.classList.contains('chip')) { district = t.dataset.d; paintSchools(); return; }
+  if (t.dataset.s) {
+    S.school = { name: t.dataset.s, level: t.dataset.l, district: t.dataset.d, manual: false };
+    location.hash = 'apply/2'; return;
+  }
+  if (t.id === 'toManual') { manual = true; renderStep(1); return; }
+  if (t.id === 'toList') { manual = false; S.school = null; renderStep(1); return; }
+  if (t.dataset.goto) { location.hash = 'apply/' + t.dataset.goto; }
+});
+$('form').addEventListener('submit', function (e) { e.preventDefault(); });
+$('back').addEventListener('click', function () { history.back(); });
+$('next').addEventListener('click', function () {
+  var n = route().step;
+  if (n === 1) { if (saveManual()) location.hash = 'apply/2'; return; }
+  if (n === 2) { if (checkPerson()) location.hash = 'apply/3'; return; }
+  if (n === 3) { location.hash = 'apply/4'; return; }
+  submit();
+});
+$('lk').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var box = $('lk-r'), p = $('lk-p').value, n = $('lk-n').value.trim();
+  if (!phoneOk(p) || !n) { box.innerHTML = '<div class="banner">請填報名時的手機和姓名。</div>'; return; }
+  box.innerHTML = '<p class="lead" style="margin-top:14px">查詢中</p>';
+  api({ action: 'lookup', phone: p, name: n }).then(function (r) {
+    if (!r.ok) { box.innerHTML = '<div class="banner">' + esc(r.msg) + '</div>'; return; }
+    box.innerHTML = r.found.length ? '<div class="review">' + r.found.map(function (f) {
+      return '<div><h3>報名成功，編號 ' + esc(f.code) + '</h3><p>' + esc(f.name) + '<small>' + esc(f.school) + '，午餐' + esc(f.diet) + '</small></p></div>';
+    }).join('') + '</div>' : '<div class="banner">查無這筆報名。請確認手機和姓名與報名時相同，或到首頁重新報名。</div>';
+  }).catch(function () { box.innerHTML = '<div class="banner">網路連線中斷，請再查一次。</div>'; });
+});
+document.addEventListener('click', function (e) {
+  var a = e.target.closest('[data-cta][aria-disabled=true]');
+  if (a) e.preventDefault();
+});
+
+$('demo').hidden = !!API;
+paintStatus();
+go();
+loadStatus();
+})();
+</script>
+</body>
+</html>
