@@ -111,6 +111,8 @@ section.agenda h2{color:#fff}
 .app-bar{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px}
 .app-bar img{width:36px;height:36px;border-radius:50%;background:#fff}
 .app-bar a{margin-left:auto;color:#fff;font-weight:500;font-size:16px}
+.app-bar span{min-width:0}
+.app-bar a{white-space:nowrap}
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:12px 0 0;padding:0;list-style:none;font-size:15px}
 .steps li{padding-top:7px;border-top:5px solid rgba(255,255,255,.3);opacity:.75}
 .steps li.on{border-color:var(--gold);opacity:1;font-weight:700}
@@ -223,6 +225,8 @@ details.pdpa summary{cursor:pointer;color:var(--violet);padding:6px 0}
 .rv-confirm .btn.danger{background:var(--err);color:#fff}
 .rv-done{margin-top:6px;color:var(--ok);font-weight:700}
 .review .rv-cancel{padding:0;color:var(--err)}
+.review .btn.rv-cancel-btn{width:100%;min-height:52px;margin-top:4px;padding:8px 16px;background:#fff;color:var(--err);font-size:18px;font-weight:700;text-decoration:none;box-shadow:inset 0 0 0 2px var(--err)}
+.review .btn.rv-cancel-btn:hover{background:#FDECEC}
 .review .rv-confirm .btn{text-decoration:none;padding:6px 20px;font-size:17px;color:var(--indigo)}
 .review .rv-confirm .btn.danger{background:var(--err);color:#fff}
 .closed-note{margin-top:14px;padding:12px 16px;border-radius:12px;background:#FFF4D6;color:#5A3B00;font-size:17px;font-weight:500;line-height:1.6;max-width:30em}
@@ -318,7 +322,7 @@ details.pdpa summary{cursor:pointer;color:var(--violet);padding:6px 0}
 <!-- 報名流程 -->
 <div id="app" hidden>
   <div class="app-top"><div class="wrap">
-    <div class="app-bar"><img src="logo.png" alt=""><span>2026 會長成長營 報名</span><a href="#">活動資訊</a></div>
+    <div class="app-bar"><img src="logo.png" alt=""><span>2026 會長成長營 報名</span><a href="#">回到活動資訊</a></div>
     <ol class="steps" id="steps"></ol>
   </div></div>
   <form id="form" class="panel" novalidate autocomplete="on"></form>
@@ -333,7 +337,7 @@ details.pdpa summary{cursor:pointer;color:var(--violet);padding:6px 0}
 
 <!-- 查詢 -->
 <div id="lookup" hidden>
-  <div class="app-top"><div class="wrap"><div class="app-bar"><img src="logo.png" alt=""><span>查詢我的報名</span><a href="#">活動資訊</a></div></div></div>
+  <div class="app-top"><div class="wrap"><div class="app-bar"><img src="logo.png" alt=""><span>查詢我的報名</span><a href="#">回到活動資訊</a></div></div></div>
   <form class="panel" id="lk" novalidate>
     <h2 tabindex="-1">查詢我的報名</h2>
     <p class="lead">輸入報名時填的手機和姓名。</p>
@@ -726,7 +730,7 @@ $('lk-r').addEventListener('click', function (e) {
     return;
   }
   if (e.target.closest('[data-no]')) {
-    act.innerHTML = '<button type="button" class="rv-cancel" data-cancel>無法出席，取消這筆報名</button>';
+    act.innerHTML = '<button type="button" class="btn rv-cancel-btn" data-cancel>無法出席，取消這筆報名</button>';
     return;
   }
   var yes = e.target.closest('[data-yes]');
@@ -753,7 +757,7 @@ $('lk').addEventListener('submit', function (e) {
     lkWho = { phone: p, name: n };
     box.innerHTML = r.found.length ? '<div class="review">' + r.found.map(function (f) {
       return '<div data-code="' + esc(f.code) + '"><h3>報名成功</h3><p>' + esc(f.name) + '<small>' + esc(f.school) + '，午餐' + esc(f.diet) + '</small></p>'
-        + '<div class="rv-act"><button type="button" class="rv-cancel" data-cancel>無法出席，取消這筆報名</button></div></div>';
+        + '<div class="rv-act"><button type="button" class="btn rv-cancel-btn" data-cancel>無法出席，取消這筆報名</button></div></div>';
     }).join('') + '</div>' : '<div class="banner">查無這筆報名。請確認手機和姓名與報名時相同，或到首頁重新報名。</div>';
   }).catch(function () { box.innerHTML = '<div class="banner">網路連線中斷，請再查一次。</div>'; });
 });
