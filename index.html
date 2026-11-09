@@ -210,6 +210,10 @@ details.pdpa summary{cursor:pointer;color:var(--violet);padding:6px 0}
 @media (max-width:380px){.slist{grid-template-columns:minmax(0,1fr)}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
 .nw{display:inline-block}
+.closed-note{margin-top:14px;padding:12px 16px;border-radius:12px;background:#FFF4D6;color:#5A3B00;font-size:17px;font-weight:500;line-height:1.6;max-width:30em}
+.closed-note a{color:inherit;font-weight:700;white-space:nowrap}
+.facts .closed-note{margin-top:8px;font-size:16px}
+.cta .closed-note{margin-left:auto;margin-right:auto}
 </style>
 </head>
 <body>
@@ -230,13 +234,14 @@ details.pdpa summary{cursor:pointer;color:var(--violet);padding:6px 0}
         <p class="sub"><i>從培養 AI 時代下的思考力</i> <i>到化解衝突的親師共好策略</i></p>
         <p class="when">115 年 12 月 12 日（六）<span class="nw">09:30～16:30</span><small>桃園市政府青年事務局 多功能展演廳</small></p>
         <p class="cta"><a class="btn" href="#apply/1" data-cta>立即報名</a></p>
+        <div class="cta"><p class="closed-note" data-closed-note hidden></p></div>
       </div>
     </div>
   </header>
 
   <section class="facts block"><div class="wrap"><dl>
     <div><dt>參加對象</dt><dd>桃園市各級學校家長會長、家長會成員及關心教育的家長們<small>預計 120 人</small></dd></div>
-    <div><dt>報名期間</dt><dd data-deadline>即日起至 12 月 9 日（三）<small>或額滿為止</small></dd></div>
+    <div><dt>報名期間</dt><dd data-deadline>即日起至 12 月 9 日（三）<small>或額滿為止</small><p class="closed-note" id="closedNote" data-closed-note hidden></p></dd></div>
     <div><dt>活動時間</dt><dd>09:30～16:30<small>09:00 開始報到，備午餐及茶點</small><small>響應環保，請自備環保杯</small></dd></div>
   </dl></div></section>
 
@@ -373,7 +378,9 @@ var mockSeq = 0, mockPeople = [];
 function api(body) {
   if (!API) return new Promise(function (ok) {
     setTimeout(function () {
-      if (!body) return ok({ ok: true, closed: false, deadlineText: '12 月 9 日（三）23:59' });
+      var mk = (location.search.match(/mock=(\w+)/) || [])[1] || '';   // 預覽測試用：?mock=full / paused / deadline
+      if (!body) return ok({ ok: true, closed: !!mk, reason: mk, contact: CONTACT, deadlineText: '12 月 9 日（三）23:59' });
+      if (mk && body.action !== 'lookup') return ok({ ok: false, closed: true, reason: mk, contact: CONTACT, msg: '報名已額滿。如仍想報名，請與協會聯繫：' + CONTACT });
       if (body.action === 'lookup') return ok({ ok: true, found: mockPeople.filter(function (p) { return key(p.name) === key(body.name); }) });
       mockSeq++;
       var code = 'A' + ('000' + mockSeq).slice(-3);
@@ -400,11 +407,25 @@ function loadStatus() {
   }).catch(function () {});   // 讀不到狀態不擋報名，送出時後端仍會檢查截止
 }
 
+function contactHtml(c) {
+  c = String(c || CONTACT);
+  if (/^[^@\s]+@[^@\s]+$/.test(c)) return '<a href="mailto:' + esc(c) + '">' + esc(c) + '</a>';
+  var tel = c.replace(/[^\d+]/g, '');
+  if (/^[\d+]{8,}$/.test(tel) && !/[^\d\s()+\-#]/.test(c)) return '<a href="tel:' + tel + '">' + esc(c) + '</a>';
+  return esc(c);
+}
+
 function paintStatus() {
+  var label = !status.closed ? '立即報名' : status.reason === 'full' ? '報名已額滿' : '報名已截止';
   Array.prototype.forEach.call(document.querySelectorAll('[data-cta]'), function (a) {
-    a.textContent = status.closed ? '報名已截止' : '立即報名';
+    a.textContent = label;
     a.setAttribute('aria-disabled', status.closed ? 'true' : 'false');
     a.style.background = status.closed ? '#C9C9DA' : '';
+  });
+  var note = (status.reason === 'full' ? '報名已額滿。' : '報名已截止。') + '如仍想報名，請與協會聯繫：' + contactHtml(status.contact);
+  Array.prototype.forEach.call(document.querySelectorAll('[data-closed-note]'), function (p) {
+    p.hidden = !status.closed;
+    if (status.closed) p.innerHTML = note;
   });
   // 報名期間文字固定寫在頁面上（含「或額滿為止」），不再用後端的 deadlineText 蓋掉
 }
@@ -602,7 +623,7 @@ function submit() {
   }).then(function (r) {
     sending = false;
     if (r.ok) { result = r; result.school = S.school.name; result.email = S.person.email.trim(); location.hash = 'done'; return; }
-    if (r.closed) status.closed = true;
+    if (r.closed) { status = { closed: true, reason: r.reason, contact: r.contact }; paintStatus(); }
     b.textContent = '送出報名'; b.disabled = !S.consent;
     box.innerHTML = '<div class="banner">' + esc(r.msg) + (r.dup ? ' <a href="#lookup">查詢我的報名</a>' : '') + '</div>';
     box.scrollIntoView({ block: 'center' });
@@ -683,7 +704,10 @@ $('lk').addEventListener('submit', function (e) {
 });
 document.addEventListener('click', function (e) {
   var a = e.target.closest('[data-cta][aria-disabled=true]');
-  if (a) e.preventDefault();
+  if (a) {   // 已停止報名：按鈕不跳轉，改帶到聯絡協會的說明
+    e.preventDefault();
+    var n = $('closedNote'); if (n) n.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 });
 
 $('demo').hidden = !!API;
