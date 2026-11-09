@@ -63,6 +63,9 @@ h1 span{letter-spacing:-.01em}
 .btn.ghost:hover{background:rgba(61,50,176,.08)}
 .cta{margin-top:22px}
 .cta .btn{min-width:260px;font-size:22px;min-height:64px}
+.cta2{margin-top:12px}
+.btn.ghost-w{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.85)}
+.btn.ghost-w:hover{background:rgba(255,255,255,.12)}
 
 /* 內容區 */
 section.block{padding:56px 0}
@@ -98,7 +101,9 @@ section.agenda h2{color:#fff}
 .foot dt{opacity:.75}.foot dd{margin:0}
 
 .stick{position:fixed;left:0;right:0;bottom:0;z-index:5;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(35,29,99,.96);display:none}
-.stick .btn{width:100%}
+.stick{gap:10px}
+.stick .btn{flex:3 1 0;min-width:0;padding:10px 12px}
+.stick .btn.ghost-w{flex:2 1 0;font-size:17px}
 
 /* 報名畫面 */
 .app-top{background:linear-gradient(rgba(35,29,99,.62),rgba(35,29,99,.62)),var(--indigo) url(hero.jpg) center/cover;color:#fff;padding:14px 0 16px}
@@ -198,7 +203,7 @@ details.pdpa summary{cursor:pointer;color:var(--violet);padding:6px 0}
   .org img{width:48px;height:48px}
   .sub{letter-spacing:.08em}
   .cta{display:none}
-  .stick{display:block}
+  .stick{display:flex}
   .facts dl{grid-template-columns:minmax(0,1fr)}
   section.block{padding:40px 0}
   .talk{grid-template-columns:112px minmax(0,1fr);gap:16px}
@@ -210,6 +215,16 @@ details.pdpa summary{cursor:pointer;color:var(--violet);padding:6px 0}
 @media (max-width:380px){.slist{grid-template-columns:minmax(0,1fr)}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
 .nw{display:inline-block}
+.rv-act{margin-top:10px}
+.rv-cancel{background:none;border:0;padding:0;color:var(--err);text-decoration:underline;font-size:16px;cursor:pointer}
+.rv-confirm{margin-top:10px;padding:12px 14px;border-radius:12px;background:#FDECEC;color:var(--text);font-size:16px;line-height:1.6}
+.rv-confirm .btns{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.rv-confirm .btn{min-height:44px;font-size:17px;padding:6px 20px}
+.rv-confirm .btn.danger{background:var(--err);color:#fff}
+.rv-done{margin-top:6px;color:var(--ok);font-weight:700}
+.review .rv-cancel{padding:0;color:var(--err)}
+.review .rv-confirm .btn{text-decoration:none;padding:6px 20px;font-size:17px;color:var(--indigo)}
+.review .rv-confirm .btn.danger{background:var(--err);color:#fff}
 .closed-note{margin-top:14px;padding:12px 16px;border-radius:12px;background:#FFF4D6;color:#5A3B00;font-size:17px;font-weight:500;line-height:1.6;max-width:30em}
 .closed-note a{color:inherit;font-weight:700;white-space:nowrap}
 .facts .closed-note{margin-top:8px;font-size:16px}
@@ -234,6 +249,7 @@ details.pdpa summary{cursor:pointer;color:var(--violet);padding:6px 0}
         <p class="sub"><i>從培養 AI 時代下的思考力</i> <i>到化解衝突的親師共好策略</i></p>
         <p class="when">115 年 12 月 12 日（六）<span class="nw">09:30～16:30</span><small>桃園市政府青年事務局 多功能展演廳</small></p>
         <p class="cta"><a class="btn" href="#apply/1" data-cta>立即報名</a></p>
+        <p class="cta cta2"><a class="btn ghost-w" href="#lookup">查詢我的報名</a></p>
         <div class="cta"><p class="closed-note" data-closed-note hidden></p></div>
       </div>
     </div>
@@ -265,7 +281,7 @@ details.pdpa summary{cursor:pointer;color:var(--violet);padding:6px 0}
     </div>
   </div></section>
 
-  <section class="agenda block"><div class="wrap">
+  <section class="agenda block" id="flow"><div class="wrap">
     <h2>當日流程</h2>
     <ol class="tl">
       <li class="quiet"><time>09:00–09:30</time><div>學員報到</div></li>
@@ -296,7 +312,7 @@ details.pdpa summary{cursor:pointer;color:var(--violet);padding:6px 0}
     <p><a href="#lookup">查詢我的報名</a></p>
     <p>報名問題請寫信到 <a href="mailto:athenalee.tw@gmail.com">athenalee.tw@gmail.com</a>，或在協會群組詢問。</p>
   </div></footer>
-  <div class="stick"><a class="btn" href="#apply/1" data-cta>立即報名</a></div>
+  <div class="stick"><a class="btn" href="#apply/1" data-cta>立即報名</a><a class="btn ghost-w" href="#lookup">查詢我的報名</a></div>
 </main>
 
 <!-- 報名流程 -->
@@ -381,7 +397,8 @@ function api(body) {
       var mk = (location.search.match(/mock=(\w+)/) || [])[1] || '';   // 預覽測試用：?mock=full / paused / deadline
       if (!body) return ok({ ok: true, closed: !!mk, reason: mk, contact: CONTACT, deadlineText: '12 月 9 日（三）23:59' });
       if (mk && body.action !== 'lookup') return ok({ ok: false, closed: true, reason: mk, contact: CONTACT, msg: '報名已額滿。如仍想報名，請與協會聯繫：' + CONTACT });
-      if (body.action === 'lookup') return ok({ ok: true, found: mockPeople.filter(function (p) { return key(p.name) === key(body.name); }) });
+      if (body.action === 'lookup') return ok({ ok: true, found: mockPeople.filter(function (p) { return key(p.name) === key(body.name) && !p.cancelled; }) });
+      if (body.action === 'cancel') { mockPeople.forEach(function (p) { if (p.code === body.code) p.cancelled = true; }); return ok({ ok: true, code: body.code }); }
       mockSeq++;
       var code = 'A' + ('000' + mockSeq).slice(-3);
       mockPeople.push({ code: code, school: body.school, name: body.person.name, diet: body.person.diet });
@@ -437,6 +454,7 @@ function route() {
   if (m) return { name: 'apply', step: Number(m[1]) };
   if (h === 'done') return { name: 'done' };
   if (h === 'lookup') return { name: 'lookup' };
+  if (h === 'flow') return { name: 'flow' };
   return { name: 'home' };
 }
 function show(id) {
@@ -454,6 +472,14 @@ function go() {
   }
   if (r.name === 'done') { show('done'); renderDone(); return; }
   if (r.name === 'lookup') { show('lookup'); return; }
+  if (r.name === 'flow') {   // 確認信連進來：字型與圖片載完版面會變長，載完再對準一次
+    show('home');
+    var toFlow = function () { if (route().name === 'flow') window.scrollTo({ top: $('flow').getBoundingClientRect().top + window.pageYOffset, behavior: 'instant' }); };
+    toFlow();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(toFlow);
+    if (document.readyState !== 'complete') window.addEventListener('load', toFlow, { once: true });
+    return;
+  }
   show('home');
 }
 window.addEventListener('hashchange', go);
@@ -640,18 +666,18 @@ function renderDone() {
   var text = '2026 會長成長營開放報名了！12/12（六）青年事務局，手機一分鐘填完：' + url;
   var cal = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent('2026 會長成長營')
     + '&dates=20261212T010000Z/20261212T083000Z&location=' + encodeURIComponent('桃園市政府青年事務局 多功能展演廳（桃園市中壢區環北路390號）')
-    + '&details=' + encodeURIComponent('09:00 開始報到。報名編號 ' + r.code);
+    + '&details=' + encodeURIComponent('09:00 開始報到');
   var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//ZLPA//Camp2026//ZH', 'BEGIN:VEVENT', 'UID:camp2026-' + r.code + '@zlpa',
     'DTSTAMP:20261101T000000Z', 'DTSTART:20261212T010000Z', 'DTEND:20261212T083000Z', 'SUMMARY:2026 會長成長營',
-    'LOCATION:桃園市政府青年事務局 多功能展演廳（桃園市中壢區環北路390號）', 'DESCRIPTION:09:00 開始報到。報名編號 ' + r.code, 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+    'LOCATION:桃園市政府青年事務局 多功能展演廳（桃園市中壢區環北路390號）', 'DESCRIPTION:09:00 開始報到', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
   $('done').innerHTML = '<div class="done-top"><h2 tabindex="-1">報名完成</h2><p>' + esc(r.school) + '：' + esc(r.name) + '</p>'
-    + '<p class="code">報名編號<b>' + esc(r.code) + '</b></p></div>'
+    + '</div>'
     + '<div class="done-body"><h3>確認信</h3><p>會寄到 ' + esc(r.email) + '。沒收到請先看垃圾郵件匣。</p><h3>活動當天</h3><p>115 年 12 月 12 日（六）09:00 開始報到，09:30 開幕</p><p>桃園市政府青年事務局 多功能展演廳（中壢區環北路 390 號）</p>'
     + '<div class="acts"><a class="btn ghost" href="' + cal + '" target="_blank" rel="noopener">加到 Google 日曆</a>'
     + '<a class="btn ghost" href="data:text/calendar;charset=utf-8,' + encodeURIComponent(ics) + '" download="2026會長成長營.ics">加到 iPhone 行事曆</a>'
     + '<a class="btn line" href="https://line.me/R/share?text=' + encodeURIComponent(text) + '" target="_blank" rel="noopener">用 LINE 分享給同校夥伴</a></div>'
     + '<p class="lead" style="margin-top:8px">每人填寫一份，同校夥伴請各自報名。</p>'
-    + '<h3>需要更改或取消</h3><p>請寫信到 <a href="mailto:' + CONTACT + '">' + CONTACT + '</a>，或在協會群組告知報名編號。</p>'
+    + '<h3>需要更改或取消</h3><p>請寫信到 <a href="mailto:' + CONTACT + '">' + CONTACT + '</a>，或在協會群組告知。也可以到本站「查詢我的報名」自行取消。</p>'
     + '<div class="acts"><a class="btn" href="#">回活動首頁</a></div></div>';
   var h = $('done').querySelector('h2'); if (h) h.focus({ preventScroll: true });
 }
@@ -690,6 +716,33 @@ $('next').addEventListener('click', function () {
   if (n === 3) { location.hash = 'apply/4'; return; }
   submit();
 });
+var lkWho = null;
+$('lk-r').addEventListener('click', function (e) {
+  var card = e.target.closest('[data-code]'); if (!card || !lkWho) return;
+  var code = card.getAttribute('data-code'), act = card.querySelector('.rv-act');
+  if (e.target.closest('[data-cancel]')) {
+    act.innerHTML = '<div class="rv-confirm">確定要取消這筆報名嗎？<br>取消後名額會釋出給其他家長；之後想再參加需重新報名，若已額滿就無法報名。'
+      + '<div class="btns"><button type="button" class="btn danger" data-yes>確定取消</button><button type="button" class="btn ghost" data-no>先不要</button></div></div>';
+    return;
+  }
+  if (e.target.closest('[data-no]')) {
+    act.innerHTML = '<button type="button" class="rv-cancel" data-cancel>無法出席，取消這筆報名</button>';
+    return;
+  }
+  var yes = e.target.closest('[data-yes]');
+  if (yes) {
+    if (yes.disabled) return;
+    yes.disabled = true; yes.textContent = '取消中，請稍候';
+    api({ action: 'cancel', phone: lkWho.phone, name: lkWho.name, code: code }).then(function (r) {
+      if (!r.ok) { act.innerHTML = '<div class="banner">' + esc(r.msg || '尚未取消，請再試一次。') + '</div>'; return; }
+      card.querySelector('h3').textContent = '已取消';
+      act.innerHTML = '<p class="rv-done">已取消報名。取消通知信會寄到您報名時填的 Email，感謝您告知。</p>';
+      loadStatus();   // 名額可能因此重新開放
+    }).catch(function () {
+      act.innerHTML = '<div class="banner">網路連線中斷，還不確定是否已取消。請重新查詢確認。</div>';
+    });
+  }
+});
 $('lk').addEventListener('submit', function (e) {
   e.preventDefault();
   var box = $('lk-r'), p = $('lk-p').value, n = $('lk-n').value.trim();
@@ -697,8 +750,10 @@ $('lk').addEventListener('submit', function (e) {
   box.innerHTML = '<p class="lead" style="margin-top:14px">查詢中</p>';
   api({ action: 'lookup', phone: p, name: n }).then(function (r) {
     if (!r.ok) { box.innerHTML = '<div class="banner">' + esc(r.msg) + '</div>'; return; }
+    lkWho = { phone: p, name: n };
     box.innerHTML = r.found.length ? '<div class="review">' + r.found.map(function (f) {
-      return '<div><h3>報名成功，編號 ' + esc(f.code) + '</h3><p>' + esc(f.name) + '<small>' + esc(f.school) + '，午餐' + esc(f.diet) + '</small></p></div>';
+      return '<div data-code="' + esc(f.code) + '"><h3>報名成功</h3><p>' + esc(f.name) + '<small>' + esc(f.school) + '，午餐' + esc(f.diet) + '</small></p>'
+        + '<div class="rv-act"><button type="button" class="rv-cancel" data-cancel>無法出席，取消這筆報名</button></div></div>';
     }).join('') + '</div>' : '<div class="banner">查無這筆報名。請確認手機和姓名與報名時相同，或到首頁重新報名。</div>';
   }).catch(function () { box.innerHTML = '<div class="banner">網路連線中斷，請再查一次。</div>'; });
 });
